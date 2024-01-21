@@ -12,4 +12,5 @@
 4) Takes .png screenshot of job posting from inputted URL and also saves in .html format to view later
 
 Future:
-5) adds a new line to an excel tracker to track follow ups
+- adds a new line to an excel tracker to track follow ups
+- Work on streamlit user-interface version
