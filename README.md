@@ -4,7 +4,7 @@
 
 2) Updates Cover Letter based on inputted information. 
   - Replaces all "DATE" with the current date,
-  - "COMPANY" with inputted company named,
+  - "COMPANY" with inputted company name,
   - "POSITION" with inputted position name
 
 3) merges cover letter and resume together and saves it in the new folder
