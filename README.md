@@ -3,7 +3,7 @@
 1) Creates a new child folder with the inputted Company name, then a folder within this with the inputted position name and date.
 
 2) Updates Cover Letter based on inputted information. 
-  - updates everywhere "DATE" is stated the current date,
+  - Replaces all "DATE" with the current date,
   - "COMPANY" with inputted company named,
   - "POSITION" with inputted position name
 
