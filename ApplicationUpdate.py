@@ -76,7 +76,7 @@ def save_webpage_as_html(url, save_path):
     driver.quit()
     
 # User Input
-url = input("Enter job posting url: ")
+# url = input("Enter job posting url: ")
 company = input("Enter the company name: ")
 position = input("Enter the position: ")
 
@@ -111,7 +111,7 @@ merge_pdfs([temp_pdf, resume_pdf], final_pdf)
 # # Screnshot job posting
 # screenshot_webpage(url, final_png)
 
-# Save webpage as HTML
-save_webpage_as_html(url, final_html)
+# # Save webpage as HTML
+# save_webpage_as_html(url, final_html)
 
 print("Done! Good luck!")
