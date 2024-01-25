@@ -79,6 +79,7 @@ def save_webpage_as_html(url, save_path):
 # url = input("Enter job posting url: ")
 company = input("Enter the company name: ")
 position = input("Enter the position: ")
+skill_role = input("Join company..., further advancing my skills in: ")
 
 # Get current date
 current_date = datetime.now().strftime("%B %d, %Y")
@@ -102,6 +103,7 @@ doc = Document(cover_letter_template)
 replace_text_in_doc(doc, "COMPANY", company)
 replace_text_in_doc(doc, "POSITION", position)
 replace_text_in_doc(doc, "DATE", current_date)
+replace_text_in_doc(doc, "SKILL", skill_role)
 doc.save(temp_docx)
 
 # Convert to PDF and merge
