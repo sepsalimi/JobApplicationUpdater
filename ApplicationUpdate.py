@@ -101,13 +101,15 @@ CurrentDateFileName = datetime.now().strftime("%Y%m%d")
 company_folder = os.path.join(directory_path, "Applications Sent Out", company, f'{job_title} - {CurrentDateFileName}')
 os.makedirs(company_folder, exist_ok=True)
 
-cover_letter_file_path = f'{Name} - Cover Letter - {company} - {job_title}.pdf' # used to check if file name length is appropriate
+# used to check if file name length is valid
+cover_letter_file_path = f'{Name} - Cover Letter - {company} - {job_title}.pdf'
 
 # Define file paths
 cover_letter_template = os.path.join(directory_path, f'{Name} - Cover Letter.docx')
 cover_letter_docx = os.path.join(company_folder, f'{Name} - Cover Letter - {company} - {job_title}.docx')
 resume_pdf = os.path.join(directory_path, f'{Name} - Resume.pdf')
 
+# Final file name pathways
 final_coverletter = os.path.join(company_folder, cover_letter_file_path) 
 
 final_application_pdf = os.path.join(company_folder, f'{Name} - Application - {company} - {job_title}.pdf')
@@ -115,6 +117,7 @@ final_resume_pdf = os.path.join(company_folder, f'{Name} - Resume - {company} - 
 final_png = os.path.join(company_folder, f'Job Posting - {company} - {job_title}.png')
 final_html = os.path.join(company_folder, f'Job Posting - {company} - {job_title}.html')
 
+# Shortened file name pathways
 cover_letter_docx_shortened  = os.path.join(company_folder, f'{Name} - Cover Letter - {company} - {role}.docx')
 final_coverletter_shortened = os.path.join(company_folder, f'{Name} - Cover Letter - {company} - {role}.pdf')
 final_application_pdf_shortened = os.path.join(company_folder, f'{Name} - Application - {company} - {role}.pdf')
