@@ -1,10 +1,8 @@
-import os
+import os, time, subprocess, shutil
+import comtypes.client # word to PDF
 from docx import Document
 from PyPDF2 import PdfMerger
 from datetime import datetime
-import subprocess
-import comtypes.client # word to PDF
-import shutil
 
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
@@ -12,14 +10,19 @@ from selenium.webdriver.edge.service import Service
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
 
-import time
+#############################
+## Parameters ###############
 
 # Input your name
 Name = 'Sepehr Salimi'
+
 # Input parent directory path
 directory_path = r'\\SepehrNAS\Thick Volume\CAREER\SEPEHR\Job Related\Resume & Cover Letter\APPLICATIONS\2024'
+
 # Specify the path to Edge WebDriver executable
 edge_driver_path = r'C:\Users\sepeh\OneDrive\Documents\Git\CoverLetterUpdater\msedgedriver.exe'
+
+#############################
 
 def replace_text_in_doc(doc, old_text, new_text):
     for p in doc.paragraphs:
@@ -111,7 +114,6 @@ resume_pdf = os.path.join(directory_path, f'{Name} - Resume.pdf')
 
 # Final file name pathways
 final_coverletter = os.path.join(company_folder, cover_letter_file_path) 
-
 final_application_pdf = os.path.join(company_folder, f'{Name} - Application - {company} - {job_title}.pdf')
 final_resume_pdf = os.path.join(company_folder, f'{Name} - Resume - {company} - {job_title}.pdf')
 final_png = os.path.join(company_folder, f'Job Posting - {company} - {job_title}.png')
@@ -125,7 +127,6 @@ final_resume_pdf_shortened = os.path.join(company_folder, f'{Name} - Resume - {c
 final_png = os.path.join(company_folder, f'Job Posting - {company} - {role}.png')
 final_html = os.path.join(company_folder, f'Job Posting - {company} - {role}.html')
 
-
 # Process Document
 doc = Document(cover_letter_template)
 replace_text_in_doc(doc, "COMPANY", company)
@@ -133,7 +134,6 @@ replace_text_in_doc(doc, "JOBTITLE", job_title)
 replace_text_in_doc(doc, "POSITION", role)
 replace_text_in_doc(doc, "DATE", CurrentDateCoverLetter)
 replace_text_in_doc(doc, "SKILL", skill_role)
-
 
 # Adjust paths if needed before assigning file names
 create_shortened_paths_if_needed()
