@@ -16,11 +16,17 @@ from selenium.webdriver.edge.service import Service
 # Input your name
 Name = 'Sepehr Salimi'
 
-# Input parent directory path
+# Input parent directory path where cover letter and resume exists
 directory_path = r'\\SepehrNAS\Thick Volume\CAREER\SEPEHR\Job Related\Resume & Cover Letter\APPLICATIONS\2024'
 
-# Specify the path to Edge WebDriver executable
-edge_driver_path = r'C:\Users\sepeh\OneDrive\Documents\Git\CoverLetterUpdater\msedgedriver.exe'
+# Name cover letter template as {Name} - Cover Letter.docx and place in parent directory
+cover_letter_template_name = f'{Name} - Cover Letter.docx'
+
+# Name resume as {Name} - Resume.pdf and place in parent directory
+resume_pdf_name = f'{Name} - Resume.pdf'
+
+# Only for screenshots of job posting: specify the path to Edge WebDriver executable
+# edge_driver_path = r'C:\Users\sepeh\OneDrive\Documents\Git\CoverLetterUpdater\msedgedriver.exe'
 
 #############################
 
@@ -49,8 +55,8 @@ def merge_pdfs(pdf_list, output):
     
 # Reduces file name size if required
 def create_shortened_paths_if_needed():
-    global cover_letter_docx, final_coverletter, final_application_pdf, final_resume_pdf
-    if len(cover_letter_file_path) > 83:
+    global cover_letter_file_path, cover_letter_docx, final_coverletter, final_application_pdf, final_resume_pdf
+    if len(cover_letter_file_path) > 83 or ('/' in cover_letter_file_path):
         cover_letter_docx = cover_letter_docx_shortened
         final_coverletter = final_coverletter_shortened
         final_application_pdf = final_application_pdf_shortened
@@ -89,6 +95,24 @@ def save_webpage_as_html(url, save_path):
         
     driver.quit()
     
+def request_file_name():
+    return input(f"Company or title name incompatible with Windows. What do you want to save the file as? \n{Name} - Cover Letter - ____________________: ")
+
+def main_process():
+    try:
+        save_as_pdf(cover_letter_docx, final_coverletter)
+        merge_pdfs([final_coverletter, resume_pdf], final_application_pdf)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        new_file_name = request_file_name()
+    
+def replace_text(doc, company, job_title, role, CurrentDateCoverLetter, skill_role):
+    replace_text_in_doc(doc, "COMPANY", company)
+    replace_text_in_doc(doc, "JOBTITLE", job_title)
+    replace_text_in_doc(doc, "POSITION", role)
+    replace_text_in_doc(doc, "DATE", CurrentDateCoverLetter)
+    replace_text_in_doc(doc, "SKILL", skill_role)   
+    
 # User Input
 # url = input("Enter job posting url: ")
 company = input("Enter the company name: ")
@@ -108,9 +132,9 @@ os.makedirs(company_folder, exist_ok=True)
 cover_letter_file_path = f'{Name} - Cover Letter - {company} - {job_title}.pdf'
 
 # Define file paths
-cover_letter_template = os.path.join(directory_path, f'{Name} - Cover Letter.docx')
+cover_letter_template = os.path.join(directory_path, cover_letter_template_name)
 cover_letter_docx = os.path.join(company_folder, f'{Name} - Cover Letter - {company} - {job_title}.docx')
-resume_pdf = os.path.join(directory_path, f'{Name} - Resume.pdf')
+resume_pdf = os.path.join(directory_path, resume_pdf_name)
 
 # Final file name pathways
 final_coverletter = os.path.join(company_folder, cover_letter_file_path) 
@@ -129,11 +153,7 @@ final_html = os.path.join(company_folder, f'Job Posting - {company} - {role}.htm
 
 # Process Document
 doc = Document(cover_letter_template)
-replace_text_in_doc(doc, "COMPANY", company)
-replace_text_in_doc(doc, "JOBTITLE", job_title)
-replace_text_in_doc(doc, "POSITION", role)
-replace_text_in_doc(doc, "DATE", CurrentDateCoverLetter)
-replace_text_in_doc(doc, "SKILL", skill_role)
+replace_text(doc, company, job_title, role, CurrentDateCoverLetter, skill_role)
 
 # Adjust paths if needed before assigning file names
 create_shortened_paths_if_needed()
@@ -145,8 +165,7 @@ shutil.copy(resume_pdf, final_resume_pdf)
 doc.save(cover_letter_docx)
 
 # Convert to PDF and merge
-save_as_pdf(cover_letter_docx, final_coverletter)
-merge_pdfs([final_coverletter, resume_pdf], final_application_pdf)
+main_process()
 
 # # Screnshot job posting
 # screenshot_webpage(url, final_png)
@@ -154,4 +173,4 @@ merge_pdfs([final_coverletter, resume_pdf], final_application_pdf)
 # # Save webpage as HTML
 # save_webpage_as_html(url, final_html)
 
-print("Done! Good luck!")
+print("Done! Good luck!\n")
