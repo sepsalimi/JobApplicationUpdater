@@ -5,8 +5,8 @@ from docx import Document
 from PyPDF2 import PdfMerger
 from datetime import datetime
 
-from selenium import webdriver
-from selenium.webdriver.edge.service import Service
+# from selenium import webdriver
+# from selenium.webdriver.edge.service import Service
 # import subprocess
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import WebDriverWait
@@ -18,6 +18,7 @@ from selenium.webdriver.edge.service import Service
 
 ## 1) 
 # Anywhere in cover letter that is COMPANY's, re-write as COMPS. This will handle companies that end with 's'.
+# Note: you MUST manually rewrite the ENTIRE sentence that includes COMPS in order to bypass a Microsoft Word issue.
 ## ie. which aligns well with COMPS culture
 
 ## 2) 
@@ -132,6 +133,9 @@ def replace_text(doc, company, job_title, role, CurrentDateCoverLetter, skill_ro
     replace_text_in_doc(doc, "POSITION", role)
     replace_text_in_doc(doc, "DATE", CurrentDateCoverLetter)
     replace_text_in_doc(doc, "SKILL", skill_role)     
+    # replace_text_in_doc(doc, "Hiring Manager", hiring_manager)  
+    # replace_text_in_doc(doc, "ADDRESS1", address1) 
+    # replace_text_in_doc(doc, "ADDRESS2", address2)
         
 # User Input
 # url = input("Enter job posting url: ")
@@ -139,6 +143,9 @@ company = input("Enter the company name: ")
 job_title = input("Enter the RE: Position: ")
 role = input("... excitement that I submit my application for the ____ position: ")
 skill_role = input("Join company..., further advancing my skills in: ")
+# hiring_manager = input("Enter hiring manager name: ")
+# address1 = input("Enter 1st address line (eg. Suite 111 111 West Broadway): ")
+# address2 = input("Enter 2nd address line (eg. Vancouver, BC V5Z 1Z5): ")
 
 # Get current date
 CurrentDateCoverLetter = datetime.now().strftime("%B %d, %Y")
