@@ -1,3 +1,4 @@
+#region Imports
 import os, time, shutil
 import comtypes.client # word to PDF
 from docx import Document
@@ -10,16 +11,23 @@ from selenium.webdriver.edge.service import Service
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
+#endregion
 
-#############################
-## Parameters ###############
+##################################
+########## Instructions ########## 
 
-# Input your name
+## 1) 
+# Anywhere in cover letter that is COMPANY's, re-write as COMPS. This will handle companies that end with 's'.
+## ie. which aligns well with COMPS culture
+
+## 2) 
+# Input the following information:
 Name = 'Sepehr Salimi'
 
 # Input parent directory path where cover letter and resume exists
 directory_path = r'\\SepehrNAS\Thick Volume\CAREER\SEPEHR\Job Related\Resume & Cover Letter\APPLICATIONS\2024'
 
+## 3) 
 # Name cover letter template as {Name} - Cover Letter.docx and place in parent directory
 cover_letter_template_name = f'{Name} - Cover Letter.docx'
 
@@ -29,7 +37,7 @@ resume_pdf_name = f'{Name} - Resume.pdf'
 # Only for screenshots of job posting: specify the path to Edge WebDriver executable
 # edge_driver_path = r'C:\Users\sepeh\OneDrive\Documents\Git\CoverLetterUpdater\msedgedriver.exe'
 
-#############################
+##################################
 
 def replace_text_in_doc(doc, old_text, new_text):
     for p in doc.paragraphs:
@@ -108,16 +116,22 @@ def main_process():
         new_file_name = request_file_name()
     
 def replace_text(doc, company, job_title, role, CurrentDateCoverLetter, skill_role):
+       
+    # Correct the possessive form of the company name depending on if last letter is an 's'
+    if company[-1].lower() == 's':
+        company_possessive = f"{company}'"
+        replace_text_in_doc(doc, "COMPS", company_possessive)
+    else:
+        company_possessive = f"{company}'s"
+        replace_text_in_doc(doc, "COMPS", company_possessive)
+      
     replace_text_in_doc(doc, "COMPANY", company)
+    replace_text_in_doc(doc, "s's", "s'")
     replace_text_in_doc(doc, "JOBTITLE", job_title)
     replace_text_in_doc(doc, "POSITION", role)
     replace_text_in_doc(doc, "DATE", CurrentDateCoverLetter)
-    replace_text_in_doc(doc, "SKILL", skill_role)  
-    
-    # Handle companies that end with 's'
-    if company[-1].lower() == 's':
-        replace_text_in_doc(doc, f"{company}'s", f"{company}'") 
-    
+    replace_text_in_doc(doc, "SKILL", skill_role)     
+        
 # User Input
 # url = input("Enter job posting url: ")
 company = input("Enter the company name: ")
