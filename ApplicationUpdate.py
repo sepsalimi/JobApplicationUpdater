@@ -115,7 +115,7 @@ def replace_text(doc, company, job_title, role, CurrentDateCoverLetter, skill_ro
     replace_text_in_doc(doc, "SKILL", skill_role)  
     
     # Handle companies that end with 's'
-    if company[-1] == 's':
+    if company[-1].lower() == 's':
         replace_text_in_doc(doc, f"{company}'s", f"{company}'") 
     
 # User Input
