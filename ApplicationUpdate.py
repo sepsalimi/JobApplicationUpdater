@@ -28,10 +28,10 @@ Name = 'Sepehr Salimi'
 directory_path = r'\\SepehrNAS\Thick Volume\CAREER\SEPEHR\Job Related\Resume & Cover Letter\APPLICATIONS\2024'
 
 ## 3) 
-# Name cover letter template as {Name} - Cover Letter.docx and place in parent directory
+# Name cover letter template as {Name} - Cover Letter.docx and place in parent directory to match the following:
 cover_letter_template_name = f'{Name} - Cover Letter.docx'
 
-# Name resume as {Name} - Resume.pdf and place in parent directory
+# Name resume as {Name} - Resume.pdf and place in parent directory to match the following:
 resume_pdf_name = f'{Name} - Resume.pdf'
 
 # Only for screenshots of job posting: specify the path to Edge WebDriver executable
