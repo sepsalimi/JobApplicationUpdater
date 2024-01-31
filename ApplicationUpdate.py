@@ -31,10 +31,12 @@ directory_path = r'\\SepehrNAS\Thick Volume\CAREER\SEPEHR\Job Related\Resume & C
 # Name cover letter template as {Name} - Cover Letter.docx and place in parent directory to match the following:
 cover_letter_template_name = f'{Name} - Cover Letter.docx'
 
+## 4)
 # Name resume as {Name} - Resume.pdf and place in parent directory to match the following:
 resume_pdf_name = f'{Name} - Resume.pdf'
 
-# Only for screenshots of job posting: specify the path to Edge WebDriver executable
+## 5) 
+# Provide path to msedgedriver.exe (optional). This is only for screenshots of job posting
 # edge_driver_path = r'C:\Users\sepeh\OneDrive\Documents\Git\CoverLetterUpdater\msedgedriver.exe'
 
 ##################################
