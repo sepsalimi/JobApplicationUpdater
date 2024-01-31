@@ -126,7 +126,6 @@ def replace_text(doc, company, job_title, role, CurrentDateCoverLetter, skill_ro
         replace_text_in_doc(doc, "COMPS", company_possessive)
       
     replace_text_in_doc(doc, "COMPANY", company)
-    replace_text_in_doc(doc, "s's", "s'")
     replace_text_in_doc(doc, "JOBTITLE", job_title)
     replace_text_in_doc(doc, "POSITION", role)
     replace_text_in_doc(doc, "DATE", CurrentDateCoverLetter)
