@@ -112,7 +112,11 @@ def replace_text(doc, company, job_title, role, CurrentDateCoverLetter, skill_ro
     replace_text_in_doc(doc, "JOBTITLE", job_title)
     replace_text_in_doc(doc, "POSITION", role)
     replace_text_in_doc(doc, "DATE", CurrentDateCoverLetter)
-    replace_text_in_doc(doc, "SKILL", skill_role)   
+    replace_text_in_doc(doc, "SKILL", skill_role)  
+    
+    # Handle companies that end with 's'
+    if company[-1] == 's':
+        replace_text_in_doc(doc, f"{company}'s", f"{company}'") 
     
 # User Input
 # url = input("Enter job posting url: ")
