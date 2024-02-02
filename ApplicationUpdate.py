@@ -40,6 +40,8 @@ resume_pdf_name = f'{Name} - Resume.pdf'
 # Provide path to msedgedriver.exe (optional). This is only for screenshots of job posting
 # edge_driver_path = r'C:\Users\sepeh\OneDrive\Documents\Git\CoverLetterUpdater\msedgedriver.exe'
 
+## 6) Modify def replace_text() and the # User Input section to cater to your requirements
+
 ##################################
 
 def replace_text_in_doc(doc, old_text, new_text):
